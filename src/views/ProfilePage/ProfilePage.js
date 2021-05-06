@@ -4,10 +4,10 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+import Apps from "@material-ui/icons/Apps";
 // core components
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
@@ -17,21 +17,29 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 
-import profile from "assets/img/faces/christian.jpg";
+import profile from "assets/img/faces/chan.jpg";
+import twitch from "assets/img/apps/my-twitch-rec.svg";
 
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio2 from "assets/img/examples/studio-2.jpg";
-import studio3 from "assets/img/examples/studio-3.jpg";
-import studio4 from "assets/img/examples/studio-4.jpg";
-import studio5 from "assets/img/examples/studio-5.jpg";
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
+import profileStyles from "assets/jss/material-kit-react/views/profilePage.js";
+import { cardTitle } from "assets/jss/material-kit-react";
 
-import styles from "assets/jss/material-kit-react/views/profilePage.js";
-
+const styles = {
+  ...profileStyles,
+  cardTitle,
+  appGridContainer: { margin: 0, width: "100%" },
+  appGridItem: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  appCard: {
+    padding: "15px 0px",
+    width: "20rem",
+  },
+  buttons: {
+    display: "flex",
+    justifyContent: "space-around",
+  },
+};
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
@@ -42,17 +50,16 @@ export default function ProfilePage(props) {
     classes.imgRoundedCircle,
     classes.imgFluid
   );
-  const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
     <div>
       <Header
         color="transparent"
-        brand="Material Kit React"
+        brand="chanrao.dev"
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{
           height: 200,
-          color: "white"
+          color: "white",
         }}
         {...rest}
       />
@@ -61,22 +68,22 @@ export default function ProfilePage(props) {
         <div>
           <div className={classes.container}>
             <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={6}>
+              <GridItem xs={6} sm={6} md={4}>
                 <div className={classes.profile}>
                   <div>
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>Christian Louboutin</h3>
-                    <h6>DESIGNER</h6>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-twitter"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-instagram"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-facebook"} />
+                    <h3 className={classes.title}>Chan Rao</h3>
+                    <h6>Software Engineer</h6>
+                    <Button
+                      link
+                      className={classes.margin5}
+                      color="transparent"
+                      href="https://github.com/lichengrao"
+                      target="_blank"
+                    >
+                      <i className={"fab fa-github"} />
                     </Button>
                   </div>
                 </div>
@@ -84,10 +91,7 @@ export default function ProfilePage(props) {
             </GridContainer>
             <div className={classes.description}>
               <p>
-                An artist of considerable range, Chet Faker — the name taken by
-                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                and records all of his own music, giving it a warm, intimate
-                feel with a solid groove structure.{" "}
+                Likes to tackle big challenges and solve interesting problems
               </p>
             </div>
             <GridContainer justify="center">
@@ -97,111 +101,69 @@ export default function ProfilePage(props) {
                   color="primary"
                   tabs={[
                     {
-                      tabButton: "Studio",
-                      tabIcon: Camera,
+                      tabButton: "Portfolio",
+                      tabIcon: Apps,
                       tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio2}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={studio5}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio4}
-                              className={navImageClasses}
-                            />
+                        <GridContainer
+                          justify="center"
+                          className={classes.appGridContainer}
+                        >
+                          <GridItem xs={12} className={classes.appGridItem}>
+                            <Card className={classes.appCard}>
+                              <Button
+                                link
+                                className={classes.margin5}
+                                color="primary"
+                                href="https://my-twitch-rec.chanrao.dev"
+                                target="_blank"
+                              >
+                                <img
+                                  style={{
+                                    width: "230px",
+                                    justifySelf: "end",
+                                    alignSelf: "center",
+                                  }}
+                                  className={classes.imgCardTop}
+                                  src={twitch}
+                                  alt="my-twitch-rec"
+                                />
+                              </Button>
+                              <CardBody>
+                                <h4 className={classes.cardTitle}>
+                                  my-twitch-rec
+                                </h4>
+                                <p>
+                                  Personalized Twitch Resources Recommendation
+                                  Engine
+                                  <br />
+                                  <br />
+                                  <i>
+                                    React, Ant Design, RESTful APIs w/ Java
+                                    servlets, MySQL, AWS EC2
+                                  </i>
+                                </p>
+                                <div className={classes.buttons}>
+                                  <Button
+                                    color="primary"
+                                    href="https://my-twitch-rec.chanrao.dev/"
+                                    target="_blank"
+                                  >
+                                    Visit
+                                  </Button>
+                                  <Button
+                                    color="github"
+                                    href="https://github.com/lichengrao/my-twitch-rec-backend"
+                                    target="_blank"
+                                  >
+                                    GitHub
+                                  </Button>
+                                </div>
+                              </CardBody>
+                            </Card>
                           </GridItem>
                         </GridContainer>
-                      )
+                      ),
                     },
-                    {
-                      tabButton: "Work",
-                      tabIcon: Palette,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work5}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    },
-                    {
-                      tabButton: "Favorite",
-                      tabIcon: Favorite,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    }
                   ]}
                 />
               </GridItem>
