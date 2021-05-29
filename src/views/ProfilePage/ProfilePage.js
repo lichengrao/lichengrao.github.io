@@ -145,7 +145,7 @@ export default function ProfilePage(props) {
                                 <div className={classes.buttons}>
                                   <Button
                                     color="primary"
-                                    href="https://my-twitch-rec.chanrao.dev/"
+                                    href="https://twitch.chanrao.dev/"
                                     target="_blank"
                                   >
                                     Visit
