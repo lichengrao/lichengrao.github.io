@@ -114,7 +114,7 @@ export default function ProfilePage(props) {
                                 link
                                 className={classes.margin5}
                                 color="primary"
-                                href="https://my-twitch-rec.chanrao.dev"
+                                href="https://twitch.chanrao.dev"
                                 target="_blank"
                               >
                                 <img
